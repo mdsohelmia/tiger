@@ -1,0 +1,21 @@
+app:
+  name: "GoStream"
+  version: "v1"
+  mode: dev
+  port: 8080
+  url: "http://localhost:8080"
+db:
+  dialect: "clickhouse"
+  host: "localhost"
+  port: "9000"
+  user: "default"
+  password: ""
+  database: "gotipath"
+cache:
+  driver: redis
+  prefix: "gostream_"
+worker:
+  driver: redis
+  concurrency: 10
+services:
+  name: "test"
