@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/MdSohelMia/tiger/core"
 	"github.com/gin-gonic/gin"
+	"gotipath.com/gostream/core"
 )
 
 type IndexController struct {

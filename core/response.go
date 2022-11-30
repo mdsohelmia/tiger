@@ -10,7 +10,9 @@ func ResponseWithSuccess(ctx *gin.Context, message string, result interface{}) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": message,
 		"success": true,
-		"result":  result,
+		"result": map[string]interface{}{
+			"data": result,
+		},
 	})
 }
 

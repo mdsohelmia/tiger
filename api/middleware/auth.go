@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"github.com/MdSohelMia/tiger/core"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"gotipath.com/gostream/core"
 )
 
 type AuthMiddleware struct {

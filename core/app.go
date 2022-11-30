@@ -3,9 +3,9 @@ package core
 import (
 	"fmt"
 
-	"github.com/MdSohelMia/tiger/config"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"gotipath.com/gostream/config"
 )
 
 type App struct {

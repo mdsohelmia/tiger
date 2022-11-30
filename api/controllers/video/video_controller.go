@@ -3,9 +3,9 @@ package video
 import (
 	"net/http"
 
-	"github.com/MdSohelMia/tiger/core"
-	"github.com/MdSohelMia/tiger/src/repository"
 	"github.com/gin-gonic/gin"
+	"gotipath.com/gostream/core"
+	"gotipath.com/gostream/src/repository"
 )
 
 type VideoController struct {

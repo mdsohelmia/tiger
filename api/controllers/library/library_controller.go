@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/MdSohelMia/tiger/core"
-	"github.com/MdSohelMia/tiger/src/models"
-	"github.com/MdSohelMia/tiger/src/repository"
 	"github.com/gin-gonic/gin"
 	validation "github.com/go-ozzo/ozzo-validation"
 	"github.com/google/uuid"
+	"gotipath.com/gostream/core"
+	"gotipath.com/gostream/src/models"
+	"gotipath.com/gostream/src/repository"
 )
 
 // library_controller
@@ -53,13 +53,17 @@ func (ctrl *LibraryController) Store(c *gin.Context) {
 		return
 	}
 
-	ctrl.repo.Create(models.Library{
-		ID:         uuid.New(),
+	data, err := ctrl.repo.Create(models.Library{
 		Title:      request.Title,
-		CustomerId: request.CustomerId,
+		CustomerId: uuid.New().String(),
 	})
 
-	core.ResponseWithSuccess(c, "Library List", request)
+	if err != nil {
+		core.ResponseWithError(c, http.StatusBadRequest, err.Error(), "error")
+		return
+	}
+
+	core.ResponseWithSuccess(c, "Library List", data)
 }
 
 func (ctrl *LibraryController) Show(c *gin.Context) {
@@ -75,7 +79,16 @@ func (ctrl *LibraryController) Show(c *gin.Context) {
 }
 
 func (ctrl *LibraryController) Destroy(c *gin.Context) {
-	core.ResponseWithSuccess(c, "Library List", []string{})
+	id := c.Param("id")
+
+	_, err := ctrl.repo.Destroy(id)
+
+	if err != nil {
+		core.ResponseWithError(c, http.StatusOK, err.Error(), nil)
+		return
+	}
+
+	core.ResponseWithSuccess(c, "Library has  been deleted.", "")
 }
 
 func (ctrl *LibraryController) Update(c *gin.Context) {
